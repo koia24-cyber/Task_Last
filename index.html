@@ -9,19 +9,89 @@
 <body>
     <div id="page">
         <header>
-            
+            <div class="search-bar">
+                <input type="text" placeholder="Browse your favourite coffee here..">
+                <button class="search-btn">🔍</button>
+            </div>
+            <div class="order-status">
+                <div class="icon-circle">🍽️</div>
+                <span>ORDER STATUS</span>
+                <span class="badge" id="kolvo_coffe">0</span>
+            </div>
         </header>
-        
-        <nav>
 
+        <nav>
+            <div class="nav-arrow">▲</div>
+            <ul class="coffee-menu">
+                <li class="active"><img src="images/coffe_svg.svg" alt="Coffee"> Cappuccino</li>
+                <li><img src="images/coffe_svg.svg" class="img_hide" alt="Coffee"> Latte</li>
+                <li><img src="images/coffe_svg.svg" class="img_hide" alt="Coffee"> Americano</li>
+                <li><img src="images/coffe_svg.svg" class="img_hide" alt="Coffee"> Espresso</li>
+                <li><img src="images/coffe_svg.svg" class="img_hide" alt="Coffee"> Flat White</li>
+            </ul>
+            <div class="nav-arrow">▼</div>
         </nav>
-        
+
         <main>
-            
+            <div class="coffee-grid">
+                <div class="coffee-card">
+                    <img src="images/img_coffe_1.png" alt="Cinnamon and Cocoa">
+                    <h3>Cinnamon and Cocoa</h3>
+                    <div class="price-add">
+                        <span class="price">₹9.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+
+                <div class="coffee-card">
+                    <img src="images/img_coffe_2.png" alt="Drizzled with Caramel">
+                    <h3>Drizzled with Caramel</h3>
+                    <div class="price-add">
+                        <span class="price">₹5.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+
+                <div class="coffee-card">
+                    <img src="images/img_coffe_3.png" alt="Bursting Blueberry">
+                    <h3>Bursting Blueberry</h3>
+                    <div class="price-add">
+                        <span class="price">₹6.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+
+                <div class="coffee-card">
+                    <img src="images/img_coffe_4.png" alt="Green Matcha">
+                    <h3>Green Matcha Latte</h3>
+                    <div class="price-add">
+                        <span class="price">₹3.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+
+                <div class="coffee-card">
+                    <img src="images/img_coffe_5.png" alt="Heart Latte">
+                    <h3>Heart Art Latte</h3>
+                    <div class="price-add">
+                        <span class="price">₹6.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+
+                <div class="coffee-card">
+                    <img src="images/img_coffe_6.png" alt="Swirl Latte">
+                    <h3>Swirl Design Latte</h3>
+                    <div class="price-add">
+                        <span class="price">₹6.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <footer>
-            
+            <p>&copy; 2025 ListR Coffee. All rights reserved.</p>
         </footer>
     </div>
     <script src="code.js"></script>
