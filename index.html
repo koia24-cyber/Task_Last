@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ListR</title>
+    <title>COFFE HOUSE KIOSK</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="page">
-        <header>
+        <main>
+        <div class="search">
             <div class="search-bar">
                 <input type="text" placeholder="Browse your favourite coffee here..">
-                <button class="search-btn">🔍</button>
+                <button class="search-btn"><img src="images/search_svg.svg" alt="search"></button>
             </div>
             <div class="order-status">
                 <div class="icon-circle">🍽️</div>
                 <span>ORDER STATUS</span>
-                <span class="badge" id="kolvo_coffe">0</span>
+                <span class="badge" id="kolvo_coffe">0</span>   
             </div>
-        </header>
-
-        <nav>
+        </div>
+        
+        <div class="coffe_nav">
             <div class="nav-arrow">▲</div>
             <ul class="coffee-menu">
                 <li class="active"><img src="images/coffe_svg.svg" alt="Coffee"> Cappuccino</li>
@@ -30,10 +31,11 @@
                 <li><img src="images/coffe_svg.svg" class="img_hide" alt="Coffee"> Flat White</li>
             </ul>
             <div class="nav-arrow">▼</div>
-        </nav>
+        </div>
 
-        <main>
+
             <div class="coffee-grid">
+
                 <div class="coffee-card">
                     <img src="images/img_coffe_1.png" alt="Cinnamon and Cocoa">
                     <h3>Cinnamon and Cocoa</h3>
@@ -42,7 +44,7 @@
                         <button class="add-btn">+</button>
                     </div>
                 </div>
-
+                
                 <div class="coffee-card">
                     <img src="images/img_coffe_2.png" alt="Drizzled with Caramel">
                     <h3>Drizzled with Caramel</h3>
@@ -51,7 +53,7 @@
                         <button class="add-btn">+</button>
                     </div>
                 </div>
-
+                
                 <div class="coffee-card">
                     <img src="images/img_coffe_3.png" alt="Bursting Blueberry">
                     <h3>Bursting Blueberry</h3>
@@ -60,7 +62,7 @@
                         <button class="add-btn">+</button>
                     </div>
                 </div>
-
+                
                 <div class="coffee-card">
                     <img src="images/img_coffe_4.png" alt="Green Matcha">
                     <h3>Green Matcha Latte</h3>
@@ -69,7 +71,7 @@
                         <button class="add-btn">+</button>
                     </div>
                 </div>
-
+                
                 <div class="coffee-card">
                     <img src="images/img_coffe_5.png" alt="Heart Latte">
                     <h3>Heart Art Latte</h3>
@@ -78,7 +80,7 @@
                         <button class="add-btn">+</button>
                     </div>
                 </div>
-
+                
                 <div class="coffee-card">
                     <img src="images/img_coffe_6.png" alt="Swirl Latte">
                     <h3>Swirl Design Latte</h3>
@@ -87,9 +89,64 @@
                         <button class="add-btn">+</button>
                     </div>
                 </div>
+                
+                <div class="coffee-card">
+                    <img src="images/img_coffe_1.png" alt="Cinnamon and Cocoa">
+                    <h3>Rich Cinnamon and Cocoa</h3>
+                    <div class="price-add">
+                        <span class="price">₹19.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                
+                <div class="coffee-card">
+                    <img src="images/img_coffe_2.png" alt="Drizzled with Caramel">
+                    <h3>Rich Drizzled with Caramel</h3>
+                    <div class="price-add">
+                        <span class="price">₹15.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                
+                <div class="coffee-card">
+                    <img src="images/img_coffe_3.png" alt="Bursting Blueberry">
+                    <h3>Rich Bursting Blueberry</h3>
+                    <div class="price-add">
+                        <span class="price">₹16.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                
+                <div class="coffee-card">
+                    <img src="images/img_coffe_4.png" alt="Green Matcha">
+                    <h3>Rich Green Matcha Latte</h3>
+                    <div class="price-add">
+                        <span class="price">₹13.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                
+                <div class="coffee-card">
+                    <img src="images/img_coffe_5.png" alt="Heart Latte">
+                    <h3>Rich Heart Art Latte</h3>
+                    <div class="price-add">
+                        <span class="price">₹16.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                
+                <div class="coffee-card">
+                    <img src="images/img_coffe_6.png" alt="Swirl Latte">
+                    <h3>Rich Swirl Design Latte</h3>
+                    <div class="price-add">
+                        <span class="price">₹16.99</span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                
             </div>
         </main>
-
+            
         <footer>
             <p>&copy; 2025 ListR Coffee. All rights reserved.</p>
         </footer>
