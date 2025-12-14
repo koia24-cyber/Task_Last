@@ -11,9 +11,6 @@
 
 
 
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
     const placeOrderBtn = document.querySelector('.place-order-btn');
     const hideBtn = document.querySelector('.hide-btn');
