@@ -246,7 +246,7 @@ main {
 
 .price-add {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px 15px;
     background: #f9f9f9;
