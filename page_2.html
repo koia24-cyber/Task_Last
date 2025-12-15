@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinnamon and Cocoa | COFFE HOUSE KIOSK</title>
+    <title>COFFE HOUSE KIOSK</title>
     <link rel="stylesheet" href="page_2.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
             <div class="order-status">
                 <div class="icon-circle">🍽️</div>
                 <span>ORDER STATUS</span>
-                <span class="badge">2</span>
+                <span class="badge"  id="count_coffe_p2">0</span>
             </div>
         </header>
 
@@ -26,7 +26,7 @@
             </div>
 
             <div class="product-info">
-                <h1>Cinnamon and Cocoa</h1>
+                <h1 id="name_coffe_p2">Cinnamon and Cocoa</h1>
                 <p class="description">
                     A single espresso shot poured into hot foamy milk, with the surface topped with mildly sweetened cocoa powder and drizzled with scrumptious caramel syrup.
                 </p>
@@ -96,7 +96,7 @@
                         <div class="item">
                             <img src="images/os_1.png" alt="Cinnamon and Cocoa">
                             <span>Cinnamon and Cocoa</span>
-                            <span class="count">2</span>
+                            <span class="count">0</span>
                         </div>
                     </div>
                     <div class="time">JUST NOW</div>
@@ -148,6 +148,7 @@
             <div class="close-action">
                 <button class="slide-btn">→</button>
                 <span>SLIDE TO CLOSE TABLE</span>
+                <span></span>
                 <div class="check-icon">✓</div>
             </div>
         </div>
@@ -156,7 +157,6 @@
     </div>
 
     <script src="data_user_order.js"></script>
-    <script src="coffe_on_p2.js"></script>
     <script src="code_2.js"></script>
 </body>
 </html>

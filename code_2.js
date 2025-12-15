@@ -1,17 +1,15 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
+    const name_p = document.getElementById("name_coffe_p2");//name of product
+    const count_p = document.getElementById("count_coffe_p2");
+
+
+    selected_coffe = JSON.parse(localStorage.getItem('selected_coffe'));
+
+
+    name_p.innerHTML = selected_coffe.name;
+    count_p.textContent = selected_coffe.count;
+
+
     const placeOrderBtn = document.querySelector('.place-order-btn');
     const hideBtn = document.querySelector('.hide-btn');
     const overlay = document.querySelector('.overlay');

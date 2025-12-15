@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: coffeData[index].name,
             type: coffeData[index].type,
             description: coffeData[index].description,
+            count: coffeData[index].count,
             price: coffeData[index].price
         };
         localStorage.setItem('selected_coffe', JSON.stringify(selected));
@@ -54,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('click', (e) => {
             //пропустить клик, если он был по кнопке +
             if (e.target.closest('.add-btn')) return;
+            
             saveSelectedCoffee(index);
             location.href = 'page_2.html';
         });
