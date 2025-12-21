@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     const nameEl = document.getElementById('name_coffe_p2');
     const countBadge = document.getElementById('count_coffe_p2');
+    const priceEl = document.querySelector('.price');
     const qtyValueEl = document.querySelector('.qty-value');
     const qtyBtns = document.querySelectorAll('.qty-btn');
     const placeOrderBtn = document.querySelector('.place-order-btn');
     const hideBtn = document.querySelector('.hide-btn');
+    const hideBtn1 = document.querySelector('.slide-btn');
     const overlay = document.querySelector('.overlay');
     const panel = document.querySelector('.order-status-panel');
     const orderedItemsContainer = document.querySelector('.status-steps .step:first-child .step-items');
@@ -31,30 +33,34 @@ document.addEventListener('DOMContentLoaded', function () {
         if (saved) selected_coffe = JSON.parse(saved);
     } catch (e) {}
 
-    if (!selected_coffe || !selected_coffe.id) {
-        const fallback = coffeData.find(c => c.id === 1) || {
-            id: 1, name: 'Coffee', count: 0, price: 9.99,
-            size: 'SHORT', extra: 'SUGAR', milk: 'ALMOND MILK'
+    const currentId = selected_coffe?.id || 1;
+    let currentItem = coffeData.find(item => item.id === currentId);
+    if (!currentItem) {
+        currentItem = coffeData.find(item => item.id === 1) || {
+            id: 1,
+            name: 'Cinnamon and Cocoa',
+            type: 'Regular',
+            description: 'images/img_coffe_1.png',
+            count: 0,
+            price: 9.99,
+            size: 'SHORT',
+            extra: 'SUGAR',
+            milk: 'ALMOND MILK'
         };
-        selected_coffe = {
-            id: fallback.id,
-            name: fallback.name,
-            type: fallback.type || 'Regular',
-            description: fallback.description || 'images/img_coffe_1.png',
-            count: fallback.count || 0,
-            price: fallback.price || 9.99,
-            size: fallback.size || 'SHORT',
-            extra: fallback.extra || 'SUGAR',
-            milk: fallback.milk || 'ALMOND MILK'
-        };
-        localStorage.setItem('selected_coffe', JSON.stringify(selected_coffe));
+        coffeData.push(currentItem);
+        localStorage.setItem('coffeData', JSON.stringify(coffeData));
     }
 
-    nameEl.textContent = selected_coffe.name;
-    qtyValueEl.textContent = selected_coffe.count;
-    countBadge.textContent = selected_coffe.count;
+    nameEl.textContent = currentItem.name;
+    qtyValueEl.textContent = currentItem.count;
+    countBadge.textContent = currentItem.count;
+    priceEl.textContent = `₹${currentItem.price.toFixed(2)}`;
 
-    function setupButtonGroup(selector, iconMap = null) {
+    function save() {
+        localStorage.setItem('coffeData', JSON.stringify(coffeData));
+    }
+
+    function setupButtonGroup(selector, field, iconMap = null) {
         const buttons = document.querySelectorAll(selector);
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -69,6 +75,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     const key = btn.textContent.trim().toUpperCase();
                     btn.querySelector('img').src = iconMap[key] || iconMap.default;
                 }
+                currentItem[field] = btn.textContent.trim();
+                save();
             });
         });
     }
@@ -81,9 +89,9 @@ document.addEventListener('DOMContentLoaded', function () {
         VENTI: 'images/size_short.svg'
     };
 
-    setupButtonGroup('.size-btn', sizeIconMap);
-    setupButtonGroup('.extra-btn');
-    setupButtonGroup('.milk-btn');
+    setupButtonGroup('.size-btn', 'size', sizeIconMap);
+    setupButtonGroup('.extra-btn', 'extra');
+    setupButtonGroup('.milk-btn', 'milk');
 
     let currentQty = Math.max(1, parseInt(qtyValueEl.textContent) || 1);
 
@@ -93,24 +101,13 @@ document.addEventListener('DOMContentLoaded', function () {
             else if (btn.textContent === '+') currentQty += 1;
 
             qtyValueEl.textContent = currentQty;
-            selected_coffe.count = currentQty;
             countBadge.textContent = currentQty;
-            localStorage.setItem('selected_coffe', JSON.stringify(selected_coffe));
+            currentItem.count = currentQty;
+            save();
         });
     });
 
-    function getCurrentOptions() {
-        const sizeBtn = document.querySelector('.size-btn.active');
-        const extraBtn = document.querySelector('.extra-btn.active');
-        const milkBtn = document.querySelector('.milk-btn.active');
-        return {
-            size: sizeBtn ? sizeBtn.textContent.trim().toUpperCase() : 'SHORT',
-            extra: extraBtn ? extraBtn.textContent.trim().toUpperCase() : 'SUGAR',
-            milk: milkBtn ? milkBtn.textContent.trim() : 'ALMOND MILK'
-        };
-    }
-
-    function updateOrderSummary(items) {
+    function updateSummary(items) {
         const subtotal = items.reduce((sum, item) => sum + (item.price * item.count), 0);
         const discount = subtotal * 0.1;
         const total = subtotal - discount;
@@ -127,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
             empty.className = 'item';
             empty.innerHTML = '<span>No items ordered</span>';
             orderedItemsContainer.appendChild(empty);
-            updateOrderSummary([]);
+            updateSummary([]);
             return;
         }
 
@@ -150,30 +147,11 @@ document.addEventListener('DOMContentLoaded', function () {
             orderedItemsContainer.appendChild(div);
         });
 
-        updateOrderSummary(items);
+        updateSummary(items);
     }
 
     if (placeOrderBtn) {
         placeOrderBtn.addEventListener('click', () => {
-            const opts = getCurrentOptions();
-            selected_coffe.size = opts.size;
-            selected_coffe.extra = opts.extra;
-            selected_coffe.milk = opts.milk;
-            selected_coffe.count = currentQty;
-
-            const item = coffeData.find(i => i.id === selected_coffe.id);
-            if (item) {
-                item.size = opts.size;
-                item.extra = opts.extra;
-                item.milk = opts.milk;
-                item.count = currentQty;
-            } else {
-                coffeData.push({ ...selected_coffe });
-            }
-
-            localStorage.setItem('selected_coffe', JSON.stringify(selected_coffe));
-            localStorage.setItem('coffeData', JSON.stringify(coffeData));
-
             renderOrderedItems();
             panel.classList.add('active');
             overlay.classList.add('active');
@@ -185,12 +163,14 @@ document.addEventListener('DOMContentLoaded', function () {
         overlay.classList.remove('active');
     }
 
+    
+    if (hideBtn1) hideBtn1.addEventListener('click', closePanel);
     if (hideBtn) hideBtn.addEventListener('click', closePanel);
     if (overlay) overlay.addEventListener('click', closePanel);
 
     const sizeBtns = document.querySelectorAll('.size-btn');
     sizeBtns.forEach(btn => btn.classList.remove('active'));
-    let sizeBtn = Array.from(sizeBtns).find(b => b.textContent.trim().toUpperCase() === selected_coffe.size);
+    let sizeBtn = Array.from(sizeBtns).find(b => b.textContent.trim().toUpperCase() === (currentItem.size || 'SHORT'));
     if (!sizeBtn) sizeBtn = sizeBtns[0];
     if (sizeBtn) {
         sizeBtn.classList.add('active');
@@ -204,14 +184,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.extra-btn').forEach(b => b.classList.remove('active'));
     let extraBtn = Array.from(document.querySelectorAll('.extra-btn')).find(b =>
-        b.textContent.trim().toUpperCase() === selected_coffe.extra
+        b.textContent.trim().toUpperCase() === (currentItem.extra || 'SUGAR')
     );
     if (!extraBtn) extraBtn = document.querySelector('.extra-btn');
     if (extraBtn) extraBtn.classList.add('active');
 
     document.querySelectorAll('.milk-btn').forEach(b => b.classList.remove('active'));
     let milkBtn = Array.from(document.querySelectorAll('.milk-btn')).find(b =>
-        b.textContent.trim() === selected_coffe.milk
+        b.textContent.trim() === (currentItem.milk || 'ALMOND MILK')
     );
     if (!milkBtn) milkBtn = document.querySelector('.milk-btn.active') || document.querySelector('.milk-btn');
     if (milkBtn) milkBtn.classList.add('active');
