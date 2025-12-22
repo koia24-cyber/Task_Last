@@ -343,6 +343,7 @@ body {
     background: white;
     border-radius: 8px;
     border: 1px solid #eee;
+    min-height: 56px;
 }
 
 .item img {
@@ -350,11 +351,24 @@ body {
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
-.item span {
+.item-info {
     flex-grow: 1;
     font-size: 14px;
+    line-height: 1.4;
+    overflow: hidden;
+}
+
+.item-info span {
+    display: block;
+    font-weight: bold;
+}
+
+.item-info small {
+    color: #777;
+    font-size: 12px;
 }
 
 .count {
@@ -367,6 +381,9 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 12px;
+    font-weight: bold;
+    flex-shrink: 0;
+    min-width: 24px;
 }
 
 .summary {

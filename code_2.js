@@ -138,10 +138,10 @@ document.addEventListener('DOMContentLoaded', function () {
             div.className = 'item';
             div.innerHTML = `
                 <img src="${imgSrc}" alt="${item.name}" onerror="this.src='images/os_1.png'">
-                <span>
-                    ${item.name}<br>
+                <div class="item-info">
+                    <span>${item.name}</span>
                     <small>${size} • ${extra} • ${milk}</small>
-                </span>
+                </div>
                 <span class="count">${item.count}</span>
             `;
             orderedItemsContainer.appendChild(div);
@@ -163,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function () {
         overlay.classList.remove('active');
     }
 
-    
     if (hideBtn1) hideBtn1.addEventListener('click', closePanel);
     if (hideBtn) hideBtn.addEventListener('click', closePanel);
     if (overlay) overlay.addEventListener('click', closePanel);
